@@ -9,8 +9,18 @@ const Modal = ({ children }: { children: ReactNode }) => {
   const wrapper = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  const handleClick = () => {};
-  const onDismiss = () => {};
+  const onDismiss = useCallback(() => {
+    router.push("/");
+  }, [router]);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      if (e.target === overlay.current && onDismiss) {
+        onDismiss();
+      }
+    },
+    [onDismiss, overlay]
+  );
 
   return (
     <div ref={overlay} className="modal" onClick={handleClick}>
@@ -21,7 +31,7 @@ const Modal = ({ children }: { children: ReactNode }) => {
       >
         <Image src="/close.svg" width={17} height={17} alt={"close"} />
       </button>
-      <div ref={wrapper} className="">
+      <div ref={wrapper} className="modal_wrapper">
         {children}
       </div>
     </div>
