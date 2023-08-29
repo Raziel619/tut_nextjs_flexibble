@@ -4,6 +4,8 @@ import { SessionInterface } from "@/common.types";
 import { ChangeEvent } from "react";
 import Image from "next/image";
 import FormField from "./FormField";
+import { categoryFilters } from "@/constants";
+import CustomMenu from "./CustomMenu";
 
 type Props = {
   type: string;
@@ -16,8 +18,12 @@ const ProjectForm = ({ type, session }: Props) => {
   const handleStateChange = (fieldName: string, value: string) => {};
 
   const form = {
+    category: "",
     image: "",
     title: "",
+    description: "",
+    liveSiteUrl: "",
+    githubUrl: "",
   };
 
   return (
@@ -48,6 +54,37 @@ const ProjectForm = ({ type, session }: Props) => {
         placeholder="Flexibble"
         setState={(value) => handleStateChange("title", value)}
       />
+      <FormField
+        title="Description"
+        state={form.description}
+        placeholder="Showcase and discover remarkable developer projects"
+        setState={(value) => handleStateChange("description", value)}
+      />
+      <FormField
+        type="url"
+        title="Website URL"
+        state={form.liveSiteUrl}
+        placeholder="https://raziel619.com"
+        setState={(value) => handleStateChange("liveSiteUrl", value)}
+      />
+      <FormField
+        type="url"
+        title="Github URL"
+        state={form.githubUrl}
+        placeholder="https://github.com/raziel619"
+        setState={(value) => handleStateChange("githubUrl", value)}
+      />
+
+      <CustomMenu
+        title="Category"
+        state={form.category}
+        filters={categoryFilters}
+        setState={(value) => handleStateChange("category", value)}
+      />
+
+      <div className="flexStart w-full">
+        <button>Create</button>
+      </div>
     </form>
   );
 };
