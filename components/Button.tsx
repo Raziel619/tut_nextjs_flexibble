@@ -27,6 +27,8 @@ const Button = ({
       type={type || "button"}
       disabled={isSubmitting}
       className={`flexCenter gap-3 px-4 py-3 ${
+        textColor ? textColor : "text-white"
+      } ${
         isSubmitting ? "bg-black/50" : bgColor ? bgColor : "bg-primary-purple"
       }  ${
         textColor ? textColor : "text-white"
