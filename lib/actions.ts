@@ -15,7 +15,7 @@ const apiKey = isProduction
   : "1234";
 const serverUrl = isProduction
   ? process.env.NEXT_PUBLIC_SERVER_URL
-  : "http:/localhost:3000";
+  : "http://localhost:3000";
 
 const client = new GraphQLClient(apiUrl);
 
